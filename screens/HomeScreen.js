@@ -1,20 +1,20 @@
 import React, {useLayoutEffect} from "react";
-import {Image, SafeAreaView, Text, TextInput, View} from "react-native";
+import {Image, SafeAreaView, ScrollView, Text, TextInput, View} from "react-native";
 import {useNavigation } from "@react-navigation/native"
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-
+import Categories from "../components/Categories";
+import FeaturedRow from "../components/FeaturedRow";
 
 const HomeScreen = () => {
-
     const navigation = useNavigation();
-
     useLayoutEffect(() => {
         navigation.setOptions({
             headerShown: false,
         });
     }, []);
+
     return (
-            <SafeAreaView className='bg-white pt-5'>
+            <SafeAreaView className='bg-white pt-10'>
                 <View className="flex-row pb-3 items-center  space-x-2 px-4">
                     <Image
                         source={{uri: "https://links.papareact.com/wru"}}
@@ -42,8 +42,29 @@ const HomeScreen = () => {
                     </View>
                     <FontAwesome name="adjust" size={24} color="#00CCBB" />
                 </View>
+                <ScrollView contentContainerStyle={{paddingBottom: 150}} className="bg-gray-100">
+                {/*    Categories*/}
+                    <Categories/>
+                    <FeaturedRow
+                        id="123"
+                        title="Featured"
+                        description="Paid placements from our partners."
+                    />
+
+                    <FeaturedRow
+                        id="1234"
+                        title="Tasty Discounts"
+                        description="Everyone's been enjoying these juicy discounts"
+                    />
+
+                    <FeaturedRow
+                        id="12345"
+                        title="Offers near you"
+                        description="Why not support your local restaurant tonigh"
+                    />
+                </ScrollView>
             </SafeAreaView>
-    )
+    );
 }
 
 export default HomeScreen;
